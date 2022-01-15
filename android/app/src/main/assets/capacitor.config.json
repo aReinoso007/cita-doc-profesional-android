@@ -1,0 +1,6 @@
+{
+	"appId": "io.ionic.starter",
+	"appName": "CitaDoc-Profesional",
+	"webDir": "www",
+	"bundledWebRuntime": false
+}
