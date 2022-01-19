@@ -1,9 +1,8 @@
 import { Router } from '@angular/router';
 import { TokenService } from './../../../service/token.service';
 import { Component, OnInit } from '@angular/core';
-import { Clinica } from 'src/app/model/clinica.model';
 import { MedicoService } from 'src/app/service/medico.service';
-import { PopoverController, ToastController } from '@ionic/angular';
+import { ToastController } from '@ionic/angular';
 
 @Component({
   selector: 'app-horarios',
@@ -75,7 +74,6 @@ export class HorariosPage implements OnInit {
 
   recargar(event){
     setTimeout(() => {
-    
       this.getClinicas();
       event.target.complete();
     }, 2000);
