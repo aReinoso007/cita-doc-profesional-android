@@ -10,7 +10,7 @@
 
 <ion-content color="light">
   <div class="seleccion" *ngIf="add === false">
-    <h1>Seleccione la clinica</h1>
+    <h1>Seleccione la clínica</h1>
     <form [formGroup]="registroForm"(ngSubmit)="onSubmitRegistro()">
       <ion-list>
         <ion-item>
@@ -24,23 +24,23 @@
         <ion-button type="submit">Aceptar</ion-button>
     </form>
       <br>
-      <h1>O</h1>
+      <h1>Ó</h1>
       <br>
-      <ion-text>Deseas agregar tu propia clinica?</ion-text>
+      <ion-text>¿Desea agregar su propia clínica?</ion-text>
       <br>
       <br>
       <ion-button color="success" (click)="setAdd()">Agregar</ion-button>
   </div>
 
   <div class="add-clinica" *ngIf="add === true"> 
-    <h1>Registrar Clinica</h1>
+    <h1>Registrar Clínica</h1>
     <form [formGroup]="clinicaForm" (ngSubmit)="onSubmit()">
       <ion-item>
-        <ion-label position="floating">Nombre de la clinica</ion-label>
+        <ion-label position="floating">Nombre de la clínica</ion-label>
         <ion-input formControlName="nombre" type="text" [(ngModel)]="clinica.nombreClinica"></ion-input>
       </ion-item>
       <ion-item>
-        <ion-label position="floating">Numero contacto</ion-label>
+        <ion-label position="floating">Número contacto</ion-label>
         <ion-input formControlName="contacto" type="number" [(ngModel)]="clinica.contacto"></ion-input>
       </ion-item>
       <br>

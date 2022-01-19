@@ -126,11 +126,11 @@ export class CuentadetallePage implements OnInit {
       this.getData();
     }, error =>{
       if(error === 200){
-        this.presentToastOptions('Exito','Registro actualizado');
+        this.presentToastOptions('¡Éxito!','Registro actualizado');
         this.getData();
         this.medForm = new FormularioUpdateMedico();
       }else{
-        this.presentToastOptions('Error','Registro actualizado');
+        this.presentToastOptions('¡Error!','Algo salió mal');
       }
     })
   }

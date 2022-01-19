@@ -24,6 +24,8 @@ export class DashboardPage implements OnInit {
   ngOnInit() {
     this.medicoService.getMedico().subscribe((data: Medico)=>{
       this.medico = JSON.parse(JSON.stringify(data));
+    }, error=>{
+      this.recargar2();
     });
     this.getTodayCitas()
     this.redirectToLogin(this.medico);
@@ -38,7 +40,7 @@ export class DashboardPage implements OnInit {
 
   redirectToLogin(medico: Medico){
     if(!medico){
-      this.presentToastOptions('Error','No esta autenticado');
+      this.presentToastOptions('¡Error!','No esta autenticado');
       this.router.navigateByUrl('/login');
     }
   }

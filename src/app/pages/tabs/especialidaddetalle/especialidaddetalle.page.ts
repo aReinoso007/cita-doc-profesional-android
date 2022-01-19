@@ -55,12 +55,12 @@ export class EspecialidaddetallePage implements OnInit {
     this.academiaService.postRegistroEspecialidad(this.registro).subscribe(res=>{
     }, error=>{
       if(error.status === 201){
-        this.presentToastOptions('Exito','Especialidad registrada')
+        this.presentToastOptions('¡Exito!','Especialidad registrada')
         this.setBack();
         this.getEspecialidades();
         this.getEspecialidadesRegistradas();
       }else{
-        this.presentToastOptions('Error', 'Algo salio mal');
+        this.presentToastOptions('¡Error!', 'Algo salió mal');
       }
     })
   }
@@ -69,7 +69,7 @@ export class EspecialidaddetallePage implements OnInit {
     this.submitted = true;
     if(!this.especialidadFormulario.valid){
       this.submitted = false;
-      this.presentToastOptions('Error','Seleccione una especialidad');
+      this.presentToastOptions('¡Error!','Seleccione una especialidad');
     }else{
       this.addRegistro();
       this.especialidadFormulario.reset();
@@ -108,7 +108,7 @@ export class EspecialidaddetallePage implements OnInit {
     this.academiaService.getSubespecialidadesRegistradasPorEspecialidad(espId.toString()).subscribe(data=>{
       dat = JSON.parse(JSON.stringify(data));
       if(dat.length > 0){
-        this.presentToastOptions('Oops','Tienes datos registrados con esta especialidad');
+        this.presentToastOptions('¡Oops!','Tienes datos registrados con esta especialidad');
       }else{
         this.academiaService.getEspecialidadRegistroId(espId).subscribe(res=>{
           this.deleteRegistroEspecialidad(Number(res));
@@ -121,7 +121,7 @@ export class EspecialidaddetallePage implements OnInit {
     this.academiaService.postDeleteRegistroEsp(regId).subscribe(res=>{
       this.getEspecialidadesRegistradas();
       this.getEspecialidades();
-      this.presentToastOptions('Exito', 'Registro eliminado con exito');
+      this.presentToastOptions('¡Éxito!', 'Registro eliminado');
     })
   }
 

@@ -37,9 +37,7 @@ export class LoginPage implements OnInit {
         this.router.navigateByUrl('/tabs/dashboard');
       },
       err=>{
-        this.presentToastOptions('¡Oops!','Los datos son incorrectos');  
-        console.log('error status: ', err.status)
-        
+        this.presentToastOptions('¡Oops!','Los datos son incorrectos '+err.message);  
       }
     )
   }
@@ -53,7 +51,7 @@ export class LoginPage implements OnInit {
       header: header,
       message: message,
       position: 'top',
-      duration: 2000
+      duration: 1500
     });
     await toast.present();
   }
@@ -66,7 +64,7 @@ export class LoginPage implements OnInit {
         this.router.navigateByUrl('/login');
       } 
     } catch (error) {
-      this.presentToastOptions('!Hola!','Bienvenido');
+      this.presentToastOptions('¡Hola!','Bienvenido');
     }
   }
     

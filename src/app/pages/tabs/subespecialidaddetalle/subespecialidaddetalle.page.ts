@@ -49,7 +49,6 @@ export class SubespecialidaddetallePage implements OnInit {
   getSubespecialidadesRegistradas(){
     this.academiaService.getSubespecialidadesRegistradasPorEspecialidad(this.especialidadId).subscribe(data=>{
       this.registradas = JSON.parse(JSON.stringify(data));
-      console.log('registradas: ', this.registradas);
     })
   }
 
@@ -57,7 +56,7 @@ export class SubespecialidaddetallePage implements OnInit {
     this.submitted = true;
     if(!this.subespecialidadFormulario.valid){
       this.submitted = false;
-      this.presentToastOptions('Error','Seleccione una subespecialidad');
+      this.presentToastOptions('¡Error!','Seleccione una subespecialidad');
     }else{
       this.addSubespecialdidad();
       this.subespecialidadFormulario.reset();
@@ -94,17 +93,15 @@ export class SubespecialidaddetallePage implements OnInit {
 
   addSubespecialdidad(){
     this.registro = new RegistroSubespecialidad(this.tokenService.getUserId(), Number(this.subespecialidadFormulario.get('subespId').value));
-    console.log('a enviar: ', this.registro);
     this.academiaService.postRegistroSubespecialidad(this.registro).subscribe(res=>{
     }, error=>{
-      console.log('error', error)
       if(error.status === 201){
-        this.presentToastOptions('Exito','Registro exitoso');
+        this.presentToastOptions('¡Éxito!','Registro guardado');
         this.getSubespecialidades();
         this.getSubespecialidadesRegistradas();
         this.setBack();
       }else{
-        this.presentToastOptions('Error','Algo salió mal');
+        this.presentToastOptions('¡Error!','Algo salió mal');
       }
     })
   }
@@ -113,7 +110,6 @@ export class SubespecialidaddetallePage implements OnInit {
 
     this.academiaService.getSubespecialidadRegistroId(subId).subscribe(data=>{
       this.academiaService.postDeleteRegistroSubEspecialidad(Number(data)).subscribe(res=>{
-        console.log('res: ', res)
         this.getSubespecialidadesRegistradas();
       });
     });

@@ -27,22 +27,21 @@ export class AddhorarioPage implements OnInit {
   async addHorario(){
     this.finFormated();
     this.inicioFormated();
-    console.log('horario: ', this.horario);
     var regId: number = Number(this.registroId);
     this.medicoService.saveHorario(regId, this.horario).subscribe(res=>{
       console.log('status: ', res.status);
       if(res.status === 201 || res.status === undefined){
-        this.presentToastOptions('En hora buena!', 'Registro exitoso' );
+        this.presentToastOptions('¡En hora buena!', 'Registro exitoso' );
         this.goBack();
         this.horario = new Horario();
       }
     }, error=>{
       if(error.status === 201 || error.status === undefined){
-        this.presentToastOptions('En hora buena!', 'Registro exitoso' );
+        this.presentToastOptions('¡En hora buena!', 'Registro exitoso' );
         this.goBack();
         this.horario = new Horario();
       }else{
-        this.presentToastOptions('Error',error.message);
+        this.presentToastOptions('¡Error!',error.message);
         this.horario = new Horario();
       }
     })
@@ -66,7 +65,6 @@ export class AddhorarioPage implements OnInit {
   addToArray(dia: string, inicio: string, fin: string){
     var h: Horario = new Horario();
     this.horarios.push(h);
-    console.log('lista: ', this.horarios);
   }
 
   inicioFormated(){

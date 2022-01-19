@@ -52,7 +52,7 @@ export class HorariosPage implements OnInit {
       this.medicoService.getHorariosOrdenados(res).subscribe((data)=>{
         hrs = JSON.parse(JSON.stringify(data));
         if(hrs.length > 0){
-          this.presentToastOptions('Oops!', 'Elimine primero los registros de horario'); 
+          this.presentToastOptions('¡Oops!', 'Elimine primero los registros de horario'); 
         }else{
           this.medicoService.deleteRegistroClinica(res).subscribe(r=>{
             this.getClinicas(); 

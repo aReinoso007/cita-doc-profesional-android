@@ -2,9 +2,9 @@
 <ion-content color="light">
   <div class="formulario">
     <form [formGroup]="direccionForm" (ngSubmit)="onSubmit()">
-      <h1>Direccion de la clinica</h1>
+      <h1>Dirección de la clínica</h1>
       <ion-item>
-        <ion-label position="floating">Pais</ion-label>
+        <ion-label position="floating">País</ion-label>
         <ion-select formControlName="pais" [(ngModel)]="direccion.pais">
           <ion-select-option value="Ecuador">Ecuador</ion-select-option>
         </ion-select>

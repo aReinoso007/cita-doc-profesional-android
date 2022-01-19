@@ -10,6 +10,7 @@
       <ion-refresher-content></ion-refresher-content>
     </ion-refresher>
     <ion-item-sliding *ngFor="let item of clinicas">
+      <br>
       <ion-item class="ion-text-center">
         <img class="center" src="../../../assets/app/clinica.png" (click)="verHorario(item.clinicaId)"/>
         <ion-label position="stacked" (click)="verHorario(item.clinicaId)">{{item.nombreClinica}}</ion-label>
@@ -19,6 +20,7 @@
           </ion-icon>{{item.direccionClinicas[0].direccion?.ciudad}}</p>
         </ion-label>
       </ion-item>
+      <br>
       <ion-item-options>
         <ion-item-option color="danger" (click)="verificarDatosEnRegistro(item.clinicaId)">Eliminar</ion-item-option>
       </ion-item-options>

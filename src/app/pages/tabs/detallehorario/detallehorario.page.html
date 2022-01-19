@@ -13,7 +13,7 @@
     <ng-template swiperSlide>
       <ion-list>
         <img src="../../../../assets/app/welcome.gif" class="img-center"/>
-        <h1>Bienvenido</h1>
+        <h1>¡Bienvenido!</h1>
         <p>
           En esta sección puedes registrar tus horarios
           de atención para esta clínica.
@@ -25,10 +25,10 @@
         <img src="../../../../assets/app/horario-add.png" class="img-medium"/>
         <h1>Es fácil</h1>
         <p>
-          Selecciona el dia e ingresa el intervalo de horas 
+          Selecciona el día e ingresa el intervalo de horas 
           que trabajas ese día.
         </p>
-        <h2>Listo?</h2>
+        <h2>¿Listo?</h2>
             <ion-button fill="clear" (click)="goToAdd()">Agregar<ion-icon slot="end" name="arrow-forward"></ion-icon></ion-button>
       </ion-list>
     </ng-template>
@@ -39,7 +39,7 @@
     <ion-list>
       <ion-item-sliding *ngFor="let item of horarios">
         <ion-item>
-          <ion-icon name="alarm"></ion-icon>
+          <ion-icon name="alarm"> </ion-icon>
           <ion-label> {{item.dia}}</ion-label>
           <ion-label> {{item.inicio}}</ion-label>
           <ion-label> {{item.fin}}</ion-label>

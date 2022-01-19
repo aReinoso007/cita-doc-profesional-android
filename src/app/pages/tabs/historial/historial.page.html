@@ -2,11 +2,13 @@
 <ion-content color="light">
     <h1 style="text-align: center;">Historial de citas</h1>
     <ion-item-sliding *ngFor="let h of historialCitas">
+        <br>
         <ion-item>
             <ion-label position="stacked">Estado: {{h.estado}}</ion-label>
             <ion-label position="stacked">Fecha de cita: {{h.fechaCita}}</ion-label>
             <ion-label position="stacked"><p>Sintomas: {{h.sintomas}}</p></ion-label>
             <ion-label position="stacked"><p>Paciente: {{h.paciente}}</p></ion-label>
         </ion-item>
+        <br>
     </ion-item-sliding>
 </ion-content>

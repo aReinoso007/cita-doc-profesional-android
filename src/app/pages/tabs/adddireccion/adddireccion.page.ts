@@ -32,7 +32,6 @@ export class AdddireccionPage implements OnInit {
   }
 
   ngOnInit() {
-    console.log('clinica id: ', this.clinicaId);
   }
 
   setFormulario(){
@@ -56,14 +55,14 @@ export class AdddireccionPage implements OnInit {
       }, error=>{
         if(error.status == 201){
           this.formularioRegistro =null;
-          this.presentToastOptions('Exito', 'Direccion registrada con exito');
+          this.presentToastOptions('¡Éxito!', 'Dirección registrada');
         }else{
-          this.presentToastOptions('Error', 'algo salio mal');
+          this.presentToastOptions('¡Error!', 'algo salió mal');
         }
       })
     }, error=>{
       if(error.status != 201){
-        this.presentToastOptions('Error','No se pudo agregar la direccion');
+        this.presentToastOptions('¡Error!','No se pudo agregar la dirección');
       }
     });
     
@@ -74,7 +73,7 @@ export class AdddireccionPage implements OnInit {
     if(!this.direccionForm.valid){
       this.submitted = false;
       this.direccionForm.reset();
-      this.presentToastOptions('Error','Todos los campos son obligatorios');
+      this.presentToastOptions('¡Error!','Todos los campos son obligatorios');
     }else{
       this.saveDireccion();
       this.direccionForm.reset();

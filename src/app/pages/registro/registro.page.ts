@@ -77,7 +77,7 @@ export class RegistroPage implements OnInit{
 
   onSubmit1(){
     if(!this.signupForm.valid){
-      this.presentToastOptions('Error', 'Debe llenar el formulario');
+      this.presentToastOptions('¡Error!', 'Debe llenar el formulario');
     }else{
       this.submitted1 = true;
     }
@@ -99,7 +99,7 @@ export class RegistroPage implements OnInit{
   async onSubmit2(){
     this.submitted2 = true;
     if(!this.signupForm2.valid && !this.signupForm.valid){
-      this.presentToastOptions('Error', 'Debe llenar el formulario');
+      this.presentToastOptions('¡Error!', 'Debe llenar el formulario');
       this.submitted2 = false;
     }else{
       this.authServie.signUp(this.medico).subscribe(res=>{
@@ -108,7 +108,7 @@ export class RegistroPage implements OnInit{
         if(error.status === 201){
           this.signupForm.reset();
           this.signupForm2.reset();
-          this.presentToastOptions('En hora buena!', 'Registro exitoso' );
+          this.presentToastOptions('¡En hora buena!', 'Registro exitoso' );
           this.router.navigateByUrl('/login');
         }else{
           this.presentToastOptions('Error',error.message);
