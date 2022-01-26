@@ -10,10 +10,14 @@ import { RegistroSubespecialidad } from '../model/RegistroSubespecialidad.model'
 })
 export class AcademiaService {
 
-  especialidadAPI ='http://www.citasmedicaspepitas.info/api/private/especialidad';
+  /*especialidadAPI ='http://www.citasmedicaspepitas.info/api/private/especialidad';
   subespecialidadAPI ='http://www.citasmedicaspepitas.info/api/public/subespecialidad';
   registroEspeAPI='http://www.citasmedicaspepitas.info/api/private/medico_especialidad';
-  registroSubEsAPI='http://www.citasmedicaspepitas.info/api/private/medico_subespecialidad';
+  registroSubEsAPI='http://www.citasmedicaspepitas.info/api/private/medico_subespecialidad';*/
+  especialidadAPI ='http://localhost:5000/api/private/especialidad';
+  subespecialidadAPI ='http://localhost:5000/api/public/subespecialidad';
+  registroEspeAPI='http://localhost:5000/api/private/medico_especialidad';
+  registroSubEsAPI='http://localhost:5000/api/private/medico_subespecialidad';
 
   constructor(
     private tokenService: TokenService,

@@ -9,10 +9,12 @@ import { TokenService } from './token.service';
   providedIn: 'root'
 })
 export class ClinicaService {
-  /*clinicasApi = 'http://localhost:8090/api/public/clinica';
-  registroDireccionAPI = 'http://localhost:8090/api/public/direccion_clinica';*/
-  clinicasApi = 'http://www.citasmedicaspepitas.info/api/private/clinica';
-  registroDireccionAPI = 'http://www.citasmedicaspepitas.info/api/public/direccion_clinica';
+  
+  /*clinicasApi = 'http://www.citasmedicaspepitas.info/api/private/clinica';
+  registroDireccionAPI = 'http://www.citasmedicaspepitas.info/api/public/direccion_clinica';*/
+  clinicasApi = 'http://localhost:5000/api/private/clinica';
+  registroDireccionAPI = 'http://localhost:5000/api/public/direccion_clinica';
+
   constructor(
     private http: HttpClient,
     private tokenService: TokenService

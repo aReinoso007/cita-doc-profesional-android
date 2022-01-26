@@ -16,12 +16,19 @@ import { FormularioRegistroClinica } from '../model/formularioRegistroClinica.mo
 
 
 export class MedicoService {
-  medicoApi   = 'http://www.citasmedicaspepitas.info/api/private/medico';
+
+  /*medicoApi   = 'http://www.citasmedicaspepitas.info/api/private/medico';
   registroApi = 'http://www.citasmedicaspepitas.info/api/private/registro_clinica';
   clinicasApi = 'http://www.citasmedicaspepitas.info/api/private/clinica';
   horariosApi = 'http://www.citasmedicaspepitas.info/api/private/horario';
-  //citaApi     = 'http://localhost:5000/api/private/cita';
-  citaApi     = 'http://www.citasmedicaspepitas.info/api/private/cita';
+  citaApi     = 'http://www.citasmedicaspepitas.info/api/private/cita';*/
+
+  medicoApi   = 'http://localhost:5000/api/private/medico';
+  registroApi = 'http://localhost:5000/api/private/registro_clinica';
+  clinicasApi = 'http://localhost:5000/api/private/clinica';
+  horariosApi = 'http://localhost:5000/api/private/horario';
+  citaApi     = 'http://localhost:5000/api/private/cita';
+
   constructor(private http: HttpClient,private tokenService: TokenService) { 
     
   }

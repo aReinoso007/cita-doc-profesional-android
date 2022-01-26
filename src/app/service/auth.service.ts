@@ -11,8 +11,8 @@ import { Medico } from '../model/medico.model';
 })
 export class AuthService {
 
-  //authURL = 'http://localhost:8090/api/auth/';
-  authURL = 'http://www.citasmedicaspepitas.info//api/auth/';
+  authURL = 'http://localhost:5000/api/auth/';
+  //authURL = 'http://www.citasmedicaspepitas.info//api/auth/';
   constructor(private http: HttpClient) { }
 
   public login(login: Login): Observable<Jwt>{
