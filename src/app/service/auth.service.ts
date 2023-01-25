@@ -1,8 +1,7 @@
 import { ApplicationServiceBase } from './aplication-base.service';
 import { Jwt } from './../model/jwt.model';
-import { Observable, throwError } from 'rxjs';
+import { Observable } from 'rxjs';
 import { Login } from './../model/login.model';
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Medico } from '../model/medico.model';
 
