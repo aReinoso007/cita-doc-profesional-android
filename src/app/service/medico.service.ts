@@ -1,3 +1,4 @@
+import { ApplicationServiceBase } from './aplication-base.service';
 import { FormularioUpdateMedico } from './../model/formularioMedicoUpdate.model';
 import { Horario } from './../model/horario.model';
 import { TokenService } from './token.service';
@@ -15,75 +16,68 @@ import { FormularioRegistroClinica } from '../model/formularioRegistroClinica.mo
 
 
 
-export class MedicoService {
+export class MedicoService extends ApplicationServiceBase {
+  protected medicoApi: string = '/private/medico';
+  protected registroApi: string = '/private/registro_clinica';
+  protected clinicasApi: string = '/private/clinica';
+  protected horariosApi: string = '/private/horario';
+  protected citaApi: string = '/private/cita';
 
-  /*medicoApi   = 'http://www.citasmedicaspepitas.info/api/private/medico';
-  registroApi = 'http://www.citasmedicaspepitas.info/api/private/registro_clinica';
-  clinicasApi = 'http://www.citasmedicaspepitas.info/api/private/clinica';
-  horariosApi = 'http://www.citasmedicaspepitas.info/api/private/horario';
-  citaApi     = 'http://www.citasmedicaspepitas.info/api/private/cita';*/
-
-  medicoApi   = 'http://citaback-env.eba-gmp35wab.sa-east-1.elasticbeanstalk.com/api/private/medico';
-  registroApi = 'http://citaback-env.eba-gmp35wab.sa-east-1.elasticbeanstalk.com/api/private/registro_clinica';
-  clinicasApi = 'http://citaback-env.eba-gmp35wab.sa-east-1.elasticbeanstalk.com/api/private/clinica';
-  horariosApi = 'http://citaback-env.eba-gmp35wab.sa-east-1.elasticbeanstalk.com/api/private/horario';
-  citaApi     = 'http://citaback-env.eba-gmp35wab.sa-east-1.elasticbeanstalk.com/api/private/cita';
-
-  constructor(private http: HttpClient,private tokenService: TokenService) { 
-    
-  }
-  
-  headers_obj = new HttpHeaders().set("Authorization","Bearer "+this.tokenService.getToken());
-  getMedico(): Observable<Medico>{
-    return this.http.get<Medico>(this.medicoApi+'/'+this.tokenService.getUserId(), {headers: this.headers_obj});
+  constructor(private tokenService: TokenService) {
+    super();
   }
 
-  postEditMedico(form: FormularioUpdateMedico): Observable<any>{
-    return this.http.post(this.medicoApi+'/update/'+this.tokenService.getUserId(),form ,{headers: this.headers_obj});
+  headers_obj = new HttpHeaders().set("Authorization", "Bearer " + this.tokenService.getToken());
+  getMedico(): Observable<Medico> {
+    return this.http.get<Medico>(this.apiBackendSite + this.medicoApi + '/' + this.tokenService.getUserId(), { headers: this.headers_obj });
   }
-  
+
+  postEditMedico(form: FormularioUpdateMedico): Observable<any> {
+    return this.http.post(this.apiBackendSite + this.medicoApi + '/update/' + this.tokenService.getUserId(), form, { headers: this.headers_obj });
+  }
+
   /*Devuelve el id del registro con el id del medico y la clinica
     esto sirve para poder listar los horarios de esa clinica, agregar, editar o borrar */
-  getRegistroPorMedicoYClinica(medicoId: number, clinicaId: number): Observable<number>{
-    return this.http.get<number>(this.registroApi+'/buscar/'+medicoId+'/'+clinicaId, {headers: this.headers_obj})
+  getRegistroPorMedicoYClinica(medicoId: number, clinicaId: number): Observable<number> {
+    return this.http.get<number>(this.apiBackendSite + this.registroApi + '/buscar/' + medicoId + '/' + clinicaId, { headers: this.headers_obj })
   }
   /*Esta funcion es la pepa */
-  getRegistroByMedicoYClinica(medicoId: number, clinicaId: number): Observable<number>{
-    return this.http.get<number>(this.registroApi+'/buscar2/'+medicoId+'/'+clinicaId, {headers: this.headers_obj})
+  getRegistroByMedicoYClinica(medicoId: number, clinicaId: number): Observable<number> {
+    return this.http.get<number>(this.apiBackendSite + this.registroApi + '/buscar2/' + medicoId + '/' + clinicaId, { headers: this.headers_obj })
   }
 
-  getClinicasMedico(): Observable<Clinica>{
-    return this.http.get<Clinica>(this.clinicasApi+'/medico_clinica/?idMedico='+this.tokenService.getUserId(), {headers: this.headers_obj});
+  getClinicasMedico(): Observable<Clinica> {
+    return this.http.get<Clinica>(this.apiBackendSite + this.clinicasApi + '/medico_clinica/?idMedico=' + this.tokenService.getUserId(), { headers: this.headers_obj });
   }
 
-  getHistorialCitas(): Observable<any[]>{
-    return this.http.get<any[]>(this.citaApi+'/historial/'+this.tokenService.getUserId(), {headers: this.headers_obj});
+  getHistorialCitas(): Observable<any[]> {
+    return this.http.get<any[]>(this.apiBackendSite + this.citaApi + '/historial/' + this.tokenService.getUserId(), { headers: this.headers_obj });
   }
 
-  postRegistroClinicaMedico(registro: FormularioRegistroClinica): Observable<any>{
-    return this.http.post(this.registroApi, registro, {headers: this.headers_obj});
+  postRegistroClinicaMedico(registro: FormularioRegistroClinica): Observable<any> {
+    return this.http.post(this.apiBackendSite + this.registroApi, registro, { headers: this.headers_obj });
   }
 
   /*Esta seccion esta dedicada a los horarios */
-  saveHorario(registroId: number, horario: Horario): Observable<any>{
-    return this.http.post<any>(this.horariosApi+'/guardar/'+registroId, horario, {headers: this.headers_obj});
+  saveHorario(registroId: number, horario: Horario): Observable<any> {
+    return this.http.post<any>(this.apiBackendSite + this.horariosApi + '/guardar/' + registroId, horario, { headers: this.headers_obj });
   }
 
-  getHorariosOrdenados(registroId: number): Observable<Horario[]>{
-    return this.http.get<Horario[]>(this.horariosApi+'/horario_ordenado/'+registroId, {headers: this.headers_obj});
-  }
-  
-  deleteHorario(horarioId: number): Observable<any>{
-    return this.http.post(this.horariosApi+'/delete',horarioId, {headers: this.headers_obj});
+  getHorariosOrdenados(registroId: number): Observable<Horario[]> {
+    return this.http.get<Horario[]>(this.apiBackendSite + this.horariosApi + '/horario_ordenado/' + registroId, { headers: this.headers_obj });
   }
 
-  deleteRegistroClinica(regId: number): Observable<any>{
-    return this.http.post(this.registroApi+'/delete', regId, {headers: this.headers_obj});
+  deleteHorario(horarioId: number): Observable<any> {
+    return this.http.post(this.horariosApi + '/delete', horarioId, { headers: this.headers_obj });
+  }
+
+  deleteRegistroClinica(regId: number): Observable<any> {
+    return this.http.post(this.apiBackendSite + this.registroApi + '/delete', regId, { headers: this.headers_obj });
   }
 
   /*Seccion de citas */
-  getTodayCitasMedico(): Observable<any[]>{
-    return this.http.get<any[]>(this.citaApi+'/hoy/'+this.tokenService.getUserId(), {headers: this.headers_obj});
+  getTodayCitasMedico(): Observable<any[]> {
+    return this.http.get<any[]>(this.apiBackendSite + this.citaApi + '/hoy/' + this.tokenService.getUserId(), { headers: this.headers_obj });
   }
 
 }

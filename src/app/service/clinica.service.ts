@@ -1,3 +1,4 @@
+import { ApplicationServiceBase } from './aplication-base.service';
 import { FormularioDireccionClinica } from './../model/FormularioDireccionClinica.model';
 import { Observable } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
@@ -8,33 +9,30 @@ import { TokenService } from './token.service';
 @Injectable({
   providedIn: 'root'
 })
-export class ClinicaService {
-  
-  /*clinicasApi = 'http://www.citasmedicaspepitas.info/api/private/clinica';
-  registroDireccionAPI = 'http://www.citasmedicaspepitas.info/api/public/direccion_clinica';*/
-  clinicasApi = 'http://citaback-env.eba-gmp35wab.sa-east-1.elasticbeanstalk.com/api/private/clinica';
-  registroDireccionAPI = 'http://citaback-env.eba-gmp35wab.sa-east-1.elasticbeanstalk.com/api/public/direccion_clinica';
+export class ClinicaService extends ApplicationServiceBase {
 
-  constructor(
-    private http: HttpClient,
-    private tokenService: TokenService
-  ) { }
-  headers_obj = new HttpHeaders().set("Authorization","Bearer "+this.tokenService.getToken());
+  protected clinicasApi: string = '/private/clinica';
+  registroDireccionAPI = '/public/direccion_clinica';
+
+  constructor(private tokenService: TokenService) {
+    super()
+  }
+  headers_obj = new HttpHeaders().set("Authorization", "Bearer " + this.tokenService.getToken());
   /*Lista todas las clinicas */
-  getAllClinicas(): Observable<Clinica>{
-    return this.http.get<Clinica>(this.clinicasApi, {headers: this.headers_obj});
+  getAllClinicas(): Observable<Clinica> {
+    return this.http.get<Clinica>(this.apiBackendSite + this.clinicasApi, { headers: this.headers_obj });
   }
 
-  getClinicasDisponibles(medicoId: number): Observable<Clinica[]>{
-    return this.http.get<Clinica[]>(this.clinicasApi+'/disponibles/'+medicoId, {headers: this.headers_obj});
+  getClinicasDisponibles(medicoId: number): Observable<Clinica[]> {
+    return this.http.get<Clinica[]>(this.apiBackendSite + this.clinicasApi + '/disponibles/' + medicoId, { headers: this.headers_obj });
   }
 
-  addClinica(clinica: Clinica): Observable<any>{
-    return this.http.post(this.clinicasApi, clinica, {headers: this.headers_obj});
+  addClinica(clinica: Clinica): Observable<any> {
+    return this.http.post(this.apiBackendSite + this.clinicasApi, clinica, { headers: this.headers_obj });
   }
 
-  addRegistroDireccion(registro: FormularioDireccionClinica): Observable<any>{
-    return this.http.post(this.registroDireccionAPI, registro);
+  addRegistroDireccion(registro: FormularioDireccionClinica): Observable<any> {
+    return this.http.post(this.apiBackendSite + this.registroDireccionAPI, registro);
   }
 
 }

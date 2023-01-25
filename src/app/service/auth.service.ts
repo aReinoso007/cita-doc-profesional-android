@@ -1,3 +1,4 @@
+import { ApplicationServiceBase } from './aplication-base.service';
 import { Jwt } from './../model/jwt.model';
 import { Observable, throwError } from 'rxjs';
 import { Login } from './../model/login.model';
@@ -9,18 +10,19 @@ import { Medico } from '../model/medico.model';
 @Injectable({
   providedIn: 'root'
 })
-export class AuthService {
+export class AuthService extends ApplicationServiceBase {
 
-  authURL = 'http://citaback-env.eba-gmp35wab.sa-east-1.elasticbeanstalk.com/api/auth/';
-  //authURL = 'http://www.citasmedicaspepitas.info//api/auth/';
-  constructor(private http: HttpClient) { }
-
-  public login(login: Login): Observable<Jwt>{
-    return this.http.post<Jwt>(this.authURL+'medico_login',login);
+  authURL = '/auth/';
+  constructor() {
+    super();
   }
 
-  public signUp(medico: Medico): Observable<any>{
-    return this.http.post(this.authURL+'medico_registro', medico);
+  public login(login: Login): Observable<Jwt> {
+    return this.http.post<Jwt>(this.apiBackendSite + this.authURL + 'medico_login', login);
+  }
+
+  public signUp(medico: Medico): Observable<any> {
+    return this.http.post(this.apiBackendSite + this.authURL + 'medico_registro', medico);
   }
 
 }
