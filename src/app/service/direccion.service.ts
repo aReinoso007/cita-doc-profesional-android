@@ -8,7 +8,7 @@ import { Direccion } from '../model/direccion.model';
 })
 export class DireccionService {
   //direccionAPI = 'http://www.citasmedicaspepitas.info/api/public/direccion';
-  direccionAPI = 'http://localhost:5000/api/public/direccion';
+  direccionAPI = 'http://citaback-env.eba-gmp35wab.sa-east-1.elasticbeanstalk.com/api/public/direccion';
   constructor(
     private http: HttpClient
   ) { }

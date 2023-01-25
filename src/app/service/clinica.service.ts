@@ -12,8 +12,8 @@ export class ClinicaService {
   
   /*clinicasApi = 'http://www.citasmedicaspepitas.info/api/private/clinica';
   registroDireccionAPI = 'http://www.citasmedicaspepitas.info/api/public/direccion_clinica';*/
-  clinicasApi = 'http://localhost:5000/api/private/clinica';
-  registroDireccionAPI = 'http://localhost:5000/api/public/direccion_clinica';
+  clinicasApi = 'http://citaback-env.eba-gmp35wab.sa-east-1.elasticbeanstalk.com/api/private/clinica';
+  registroDireccionAPI = 'http://citaback-env.eba-gmp35wab.sa-east-1.elasticbeanstalk.com/api/public/direccion_clinica';
 
   constructor(
     private http: HttpClient,

@@ -23,11 +23,11 @@ export class MedicoService {
   horariosApi = 'http://www.citasmedicaspepitas.info/api/private/horario';
   citaApi     = 'http://www.citasmedicaspepitas.info/api/private/cita';*/
 
-  medicoApi   = 'http://localhost:5000/api/private/medico';
-  registroApi = 'http://localhost:5000/api/private/registro_clinica';
-  clinicasApi = 'http://localhost:5000/api/private/clinica';
-  horariosApi = 'http://localhost:5000/api/private/horario';
-  citaApi     = 'http://localhost:5000/api/private/cita';
+  medicoApi   = 'http://citaback-env.eba-gmp35wab.sa-east-1.elasticbeanstalk.com/api/private/medico';
+  registroApi = 'http://citaback-env.eba-gmp35wab.sa-east-1.elasticbeanstalk.com/api/private/registro_clinica';
+  clinicasApi = 'http://citaback-env.eba-gmp35wab.sa-east-1.elasticbeanstalk.com/api/private/clinica';
+  horariosApi = 'http://citaback-env.eba-gmp35wab.sa-east-1.elasticbeanstalk.com/api/private/horario';
+  citaApi     = 'http://citaback-env.eba-gmp35wab.sa-east-1.elasticbeanstalk.com/api/private/cita';
 
   constructor(private http: HttpClient,private tokenService: TokenService) { 
     
